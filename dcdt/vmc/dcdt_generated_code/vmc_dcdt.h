@@ -6,12 +6,12 @@
 
   File Name:     vmc_dcdt.h
   Project Name:  vmc
-  Date:          3/14/2024
-  Time:          16:39.09
+  Date:          3/9/2021
+  Time:          16:07.23
 
   Software License Agreement
 
-  Copyright ? 2024 Microchip Technology Inc.  All rights reserved.
+  Copyright © 2021 Microchip Technology Inc.  All rights reserved.
   Microchip licenses to you the right to use, modify, copy and distribute
   Software only when embedded on a Microchip microcontroller or digital
   signal controller, which is integrated into your product or third party
@@ -21,7 +21,7 @@
   You should refer to the license agreement accompanying this Software
   for additional information regarding your rights and obligations.
 
-  SOFTWARE AND DOCUMENTATION ARE PROVIDED ¡°AS IS¡± WITHOUT WARRANTY OF ANY
+  SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS” WITHOUT WARRANTY OF ANY
   KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY WARRANTY
   OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR
   PURPOSE. IN NO EVENT SHALL MICROCHIP OR ITS LICENSORS BE LIABLE OR
@@ -40,28 +40,28 @@
   Compensator Type:  2P2Z
       Entry                Value  
     ---------            ---------
-  Pole 0                 5.0000e+01 Hz
-  Pole 2                 5.0000e+04 Hz
-  Zero 1                 3.0000e+03 Hz
-  Gain(Kdc)              2.000
+  Pole 0                 2.0000e+03 Hz
+  Pole 2                 2.0000e+05 Hz
+  Zero 1                 1.0000e+03 Hz
+  Gain(Kdc)              1.000
   Warp                   false
-  PWM Frequency          5.9000e+04
-  PWM Sampling Ratio     1
-  Sampling Frequency     5.9000e+04
-  PWM Max Resolution     2.0000e-09
+  PWM Frequency          8.0000e+05
+  PWM Sampling Ratio     4
+  Sampling Frequency     2.0000e+05
+  PWM Max Resolution     2.5000e-10
   Computational Delay    1.3500e-06
   Gate Drive Delay       1.5000e-07
-  Control Output Min.    5000
-  Control Output Max.    10000
-  Kuc Gain               3.2781e+01
-  Use Kuc Gain           true
+  Control Output Min.    4000
+  Control Output Max.    5000
+  Kuc Gain               1.7326e+01
+  Use Kuc Gain           false
 
 
   PWM Calculations
       Name                Value  
     ---------           ---------
-  Bits of Resolution    13.049
-  Gain                  1.180e-04
+  Bits of Resolution    14.288
+  Gain                  5.000e-05
 
 
   s-domain transfer function
@@ -70,9 +70,9 @@
   H(s) = Kdc X --- X ------------
                 s    Wz1(Wp2 + s)
 
-                  3.14e+02   3.14e+05(1.88e+04 + s)
-  H(s) = 2.000 X -------- X ----------------------
-                     s       1.88e+04(3.14e+05 + s)
+                  1.26e+04   1.26e+06(6.28e+03 + s)
+  H(s) = 1.000 X -------- X ----------------------
+                     s       6.28e+03(1.26e+06 + s)
 
 
 
@@ -80,11 +80,11 @@
 
   Name    Value     Normalized    Q15      Hex
   ----    -----     ----------    ---      ---
-  a1      0.546     0.546         17894    0x45E6
-  a2      0.454     0.454         14873    0x3A19
-  b0      0.921     0.921         30186    0x75EA
-  b1      0.254     0.254         8315     0x207B
-  b2      -0.667    -0.667        -21870   0xAA92
+  a1      0.483     0.313         10268    0x281C
+  a2      0.517     0.336         10994    0x2AF2
+  b0      1.541     1.000         32764    0x7FFC
+  b1      0.048     0.031         1013     0x03F5
+  b2      -1.493    -0.969        -31751   0x83F9
 
 
   z-domain transfer function
@@ -93,27 +93,27 @@
   H(z) = --- = ------------------------
          e(z)  A0 - A1z^(-1) - A2z^(-2)
 
-          (0.028) + (0.008)z^(-1) + (-0.020)z^(-2)
+          (1.541) + (0.048)z^(-1) + (-1.493)z^(-2)
   H(z) = ---------------------------------------------
-          1 - (0.546)z^(-1) - (0.454)z^(-2)
+          1 - (0.483)z^(-1) - (0.517)z^(-2)
 
 **/
 
 
 // Compensator Coefficient Defines
-#define VMC_COMP_2P2Z_COEFF_A1      0x45E6
-#define VMC_COMP_2P2Z_COEFF_A2      0x3A19
-#define VMC_COMP_2P2Z_COEFF_B0      0x75EA
-#define VMC_COMP_2P2Z_COEFF_B1      0x207B
-#define VMC_COMP_2P2Z_COEFF_B2      0xAA92
-#define VMC_COMP_2P2Z_POSTSCALER    0x7FFF
-#define VMC_COMP_2P2Z_POSTSHIFT     0x0000
+#define VMC_COMP_2P2Z_COEFF_A1      0x281C
+#define VMC_COMP_2P2Z_COEFF_A2      0x2AF2
+#define VMC_COMP_2P2Z_COEFF_B0      0x7FFC
+#define VMC_COMP_2P2Z_COEFF_B1      0x03F5
+#define VMC_COMP_2P2Z_COEFF_B2      0x83F9
+#define VMC_COMP_2P2Z_POSTSCALER    0x62A1
+#define VMC_COMP_2P2Z_POSTSHIFT     0xFFFF
 #define VMC_COMP_2P2Z_PRESHIFT      0x0000
 
 
 // Compensator Clamp Limits
-#define VMC_COMP_2P2Z_MIN_CLAMP    0x1388
-#define VMC_COMP_2P2Z_MAX_CLAMP    0x2710
+#define VMC_COMP_2P2Z_MIN_CLAMP    0x0FA0
+#define VMC_COMP_2P2Z_MAX_CLAMP    0x1388
 
 
 #endif
